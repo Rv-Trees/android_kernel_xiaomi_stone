@@ -66,6 +66,11 @@ obj-$(CONFIG_SHADOW_CALL_STACK)		+= scs.o
 
 obj-y					+= vdso/ probes/
 obj-$(CONFIG_COMPAT_VDSO)		+= vdso32/
+
+# Force dependency (vdso*-wrap.S includes vdso.so through incbin)
+$(obj)/vdso-wrap.o: $(obj)/vdso/vdso.so
+$(obj)/vdso32-wrap.o: $(obj)/vdso32/vdso.so
+
 head-y					:= head.o
 extra-y					+= $(head-y) vmlinux.lds
 
