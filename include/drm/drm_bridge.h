@@ -398,6 +398,7 @@ struct drm_bridge {
 	const struct drm_bridge_funcs *funcs;
 	/** @driver_private: pointer to the bridge driver's internal context */
 	void *driver_private;
+	struct mutex lock;
 };
 
 void drm_bridge_add(struct drm_bridge *bridge);
